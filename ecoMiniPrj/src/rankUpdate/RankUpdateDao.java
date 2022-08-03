@@ -39,9 +39,11 @@ public class RankUpdateDao {
 		ResultSet rs = null;
 		try {
 			pstmt = conn.prepareStatement(sql);
-			
+			pstmt.setString(1, dto.getId());
+			rank = rs.getString("RANK");
 		} finally {
 			close(pstmt);
+			close(rs);
 		}
 		return rank;
 	}

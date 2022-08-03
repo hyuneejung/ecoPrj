@@ -24,5 +24,21 @@ public class RankUpdateService {
 			close(conn);
 		}
 	}
+	
+	public String changeRank(EcoDto ed) {
+		Connection conn = null;
+		String rank = null;
+		try {
+	
+			conn = getConnection();
+			rank = new RankUpdateDao().changeRank(ed,conn);
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(conn);
+		}
+		return rank;
+	}
 
 }

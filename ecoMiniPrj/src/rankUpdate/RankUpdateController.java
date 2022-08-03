@@ -17,7 +17,10 @@ public class RankUpdateController {
 		 * 
 		 * 
 		 * */
+		
 		new RankUpdateService().rankUpdate(ed);
+		
+		new RankUpdateService().changeRank(ed);
 		
 	}
 }
