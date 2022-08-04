@@ -3,6 +3,8 @@ package savePoint;
 import cafe.CafeDto;
 import main.Main;
 import member.EcoDto;
+import rk.RkController;
+import rk.RkDto;
 import util.InputUtil;
 
 public class SavePointController {
@@ -34,6 +36,7 @@ public class SavePointController {
 	}// point
 
 	private void cafeEmp(int userChoice, EcoDto ed) { // ~~~카페직원 확인~~~
+		RkDto rk = new RkController().rankBonus();
 		boolean isFinish = false;
 		while (!isFinish) {
 
@@ -51,7 +54,7 @@ public class SavePointController {
 					if (userChoice == 1) {// 1. 일회용 컵 반환하기
 						int cupPoint = new SavePointDao().dbAllTableAddCP(dto,ed);
 						if (cupPoint == 2) {
-							System.out.println(dto.getName() + "에서 " + dto.getCupPoint() + "ECO 적립되었습니다.");
+							System.out.println(dto.getName() + "에서 " + dto.getCupPoint()+ rk.getBonus() + "ECO 적립되었습니다.");
 							return; // ======================적립성공하면 종료====================================
 						} else {
 							System.out.println("일회용 컵 반납 ECO 적립 실패");
@@ -59,7 +62,7 @@ public class SavePointController {
 					} else if (userChoice == 2) {// 2. 텀블러 사용하기
 						int tumPoint = new SavePointDao().dbAllTableAddTP(dto,ed);
 						if (tumPoint == 2) {
-							System.out.println(dto.getName() + "에서 " + dto.getTumPoint() + "ECO 적립되었습니다.");
+							System.out.println(dto.getName() + "에서 " + dto.getTumPoint()+ rk.getBonus() + "ECO 적립되었습니다.");
 							return; // ======================적립성공하면 종료====================================
 						} else {
 							System.out.println("텁블러 사용 ECO 적립 실패");

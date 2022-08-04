@@ -2,6 +2,8 @@ package rankUpdate;
 
 import main.Main;
 import member.EcoDto;
+import rk.RkController;
+import rk.RkDto;
 
 public class RankUpdateController {
 	
@@ -10,6 +12,7 @@ public class RankUpdateController {
 			return;
 		}
 		EcoDto ed = Main.LoginUser;
+		RkDto rd = new RkController().rankBonus();
 		/*
 		 * 업데이트전 랭크받아오기
 		 * 
@@ -17,10 +20,16 @@ public class RankUpdateController {
 		 * 
 		 * 
 		 * */
+		String userRank = ed.getRank();
+		String updateRank = rd.getRankName();
 		
 		new RankUpdateService().rankUpdate(ed);
 		
-		new RankUpdateService().changeRank(ed);
+		if(!userRank.equals(updateRank)) {
+			String cr = new RankUpdateService().changeRank(ed);
+			ed.setRank(cr);
+			System.out.println(ed.getNick()+"님 "+ed.getRank()+ "로 등업 축하드립니다!!");
+		}
 		
 	}
 }
