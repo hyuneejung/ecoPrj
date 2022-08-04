@@ -8,14 +8,13 @@ import java.sql.Timestamp;
 import java.util.Scanner;
 
 import main.Main;
-import member.MemberDto;
+import member.EcoDto;
 import util.InputUtil;
-import util.JDBCTemplate;
 import util.MiniConn;
 
 public class MyPage {
 	
-	MemberController mc = new MemberController();
+	EcoControll ec = new EcoControll();
 	
 	public void myPage() {
 		
@@ -223,11 +222,11 @@ public class MyPage {
 		String pwd = InputUtil.sc.nextLine();
 		
 		// 비번 맞는지 체크
-		MemberDto dto = new MemberDto();
+		EcoDto dto = new EcoDto();
 		dto.setId(Main.LoginUser.getId());
 		dto.setPwd(pwd);
 		
-		MemberDto pwdCheckResult = mc.login(dto);
+		EcoDto pwdCheckResult = ec.login(dto);
 		if(pwdCheckResult == null) {
 			// 비번 틀림
 			System.out.println("비밀번호가 일치하지 않습니다!");
@@ -385,11 +384,11 @@ public class MyPage {
 		String newPwd2 = InputUtil.getString();
 		
 		// 비번 맞는지 체크
-		MemberDto dto = new MemberDto();
+		EcoDto dto = new EcoDto();
 		dto.setId(Main.LoginUser.getId());
 		dto.setPwd(pwd);
 		
-		MemberDto pwdCheckResult = mc.login(dto);
+		EcoDto pwdCheckResult = ec.login(dto);
 		if(pwdCheckResult == null) {
 			// 비번 틀림
 			System.out.println("기존 비밀번호와 일치하지 않습니다 !");
