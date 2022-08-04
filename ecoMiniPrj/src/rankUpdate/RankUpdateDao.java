@@ -33,13 +33,13 @@ public class RankUpdateDao {
 	}
 
 	public String changeRank(EcoDto ed, Connection conn) throws Exception {
-		String sql = "SELECT R.RANK FROM ECO_MEMBER E JOIN RANKSYS R ON E.RANKNO = R.NO WHERE ID = ?";
+		String sql = "SELECT R.RANK FROM ECO_MEMBER E JOIN RANKSYS R ON E.RANKNO = R.NO WHERE E.ID = ?";
 		PreparedStatement pstmt = null;
 		String rank = null;
 		ResultSet rs = null;
 		try {
 			pstmt = conn.prepareStatement(sql);
-//			pstmt.setString(1, ed.getId());
+			pstmt.setString(1, ed.getId());
 			rs = pstmt.executeQuery();
 			rank = rs.getString("RANK");
 		} finally {
