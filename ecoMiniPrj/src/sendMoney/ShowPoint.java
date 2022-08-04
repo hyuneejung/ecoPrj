@@ -5,7 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import table.EcoDto;
+import member.EcoDto;
+import util.MiniConn;
 
 public class ShowPoint {
 

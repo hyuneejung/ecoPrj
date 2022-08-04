@@ -7,11 +7,11 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 import main.Main;
-import table.EcoDto;
-import table.HistoryDto;
+import member.EcoDto;
+import dto.HistoryDto;
 import util.InputUtil;
 import util.MiniConn;
-import util.ShowPoint;
+import sendMoney.ShowPoint;
 
 public class MemberSendMoney {
 
@@ -81,7 +81,7 @@ public class MemberSendMoney {
 			rs = pstmt.executeQuery();
 			System.out.println("현재 나의 ECO : " + dto.getPoint() + "\n");
 			System.out.println("[" + dto.getNick() + "님의 계좌이체 정보]");
-			System.out.println(dto.getBank() + "은행 " + dto.getAccount());
+			System.out.println(dto.getBankName() + "은행 " + dto.getAccount());
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
