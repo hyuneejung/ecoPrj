@@ -26,10 +26,8 @@ public class MyPage {
 		
 		System.out.println("=======" + Main.LoginUser.getNick() + " 님의 회원 정보 ========");
 		System.out.println("현재 등급 : " + getRank());
-		System.out.println("현재 Seed : " + getNowSeed());
-		System.out.println("누적 Seed : " + getTotalSeed());
-		System.out.println(Main.LoginUser);
-		
+		System.out.println("현재 ECO : " + getNowSeed());
+		System.out.println("누적 ECO : " + getTotalSeed());
 		System.out.println("=============================");
 		System.out.println("1. 회원 정보 변경하기 (닉네임 / 비밀번호)");
 		System.out.println("2. ECO 적립 및 사용 내역 확인하기");
@@ -248,7 +246,7 @@ public class MyPage {
 		ResultSet rs = null;
 		
 		// 연결된 정보를 이용해서 SQL 실행
-		String sql = "SELECT ID, TIME_REPORT, POINT FROM HISTORY WHERE ID = ?";
+		String sql = "SELECT H.TIME_REPORT, H.POINT, R.TYPE, P.PLACE_NAME FROM HISTORY H JOIN PLACE P ON P.PLACE_NO = H.PLACE_NO JOIN REPORT R ON R.REPORT_NO = H.REPORT_NO WHERE ID = ? AND H.REPORT_NO != 5";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -259,7 +257,7 @@ public class MyPage {
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				System.out.println(rs.getString(1)+"\t"+rs.getTimestamp(2)+"\t"+rs.getInt(3));
+				System.out.println(rs.getTimestamp(1)+"\t"+rs.getInt(2)+"\t"+rs.getString(3)+"\t"+rs.getString(4));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -281,7 +279,7 @@ public class MyPage {
 		ResultSet rs = null;
 		
 		// 연결된 정보를 이용해서 SQL 실행
-		String sql = "SELECT ID, TIME_REPORT, DONATION_POINT FROM HISTORY WHERE ID = ?";
+		String sql = "SELECT H.TIME_REPORT, H.POINT, R.TYPE, P.PLACE_NAME FROM HISTORY H JOIN PLACE P ON P.PLACE_NO = H.PLACE_NO JOIN REPORT R ON R.REPORT_NO = H.REPORT_NO WHERE ID = ? AND H.REPORT_NO = 5";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -292,7 +290,7 @@ public class MyPage {
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				System.out.println(rs.getString(1)+"\t"+rs.getTimestamp(2)+"\t"+rs.getInt(3));
+				System.out.println(rs.getTimestamp(1)+"\t"+rs.getInt(2)+"\t"+rs.getString(3)+"\t"+rs.getString(4));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
