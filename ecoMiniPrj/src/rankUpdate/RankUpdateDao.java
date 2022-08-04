@@ -41,7 +41,9 @@ public class RankUpdateDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, ed.getId());
 			rs = pstmt.executeQuery();
-			rank = rs.getString("RANK");
+			if(rs.next()) {
+				rank = rs.getString("RANK");
+			}
 		} finally {
 			close(pstmt);
 			close(rs);
