@@ -75,7 +75,7 @@ public class MyPage {
 		ResultSet rs = null;
 		
 		// 연결된 정보를 이용해서 SQL 실행
-		String sql = "SELECT RANK FROM ECO_MEMBER WHERE ID = ?";
+		String sql = "SELECT R.RANK FROM ECO_MEMBER E JOIN RANKSYS R ON E.RANKNO = R.NO WHERE ID = ?";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
