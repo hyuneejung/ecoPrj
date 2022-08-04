@@ -1,5 +1,15 @@
 package member;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Scanner;
+
+
+import static util.InputUtil.*;
+import util.MiniConn;
+
 public class MemberController {
 
 	public int join() {
@@ -24,7 +34,7 @@ public class MemberController {
 			pstmt.setString(4, dto.getId());
 			pstmt.setString(5, dto.getPwd());
 			pstmt.setString(6, dto.getPhone());
-			pstmt.setString(7, dto.getBank());
+			pstmt.setInt(7, dto.getBankNo());
 			pstmt.setString(8, dto.getAccount());
 
 			result = pstmt.executeUpdate();
@@ -61,7 +71,7 @@ public class MemberController {
 		System.out.print("닉네임 : ");
 		String nick = sc.nextLine();
 		System.out.print("성별(F/M) : ");
-		String gender = InputUtil.toUpperCase(InputUtil.getString());
+		String gender = toUpperCase(getString());
 
 		// 아이디 중복 확인
 		boolean isFinish = false;
@@ -74,7 +84,7 @@ public class MemberController {
 			if (id.equals(uniqueCheck(id))) {
 				System.out.println("증복 된 아이디가 있습니다.");
 				System.out.print("재시도 하시겠습니까 ? ( Y / N ) : ");
-				String user = InputUtil.toUpperCase(InputUtil.getString());
+				String user = toUpperCase(getString());
 				isFinish = request(user);
 				if (user.equals("N")) {
 					return null;
@@ -94,12 +104,12 @@ public class MemberController {
 		String phone = null;
 		while (!isFinish) {
 			System.out.print("핸드폰번호 : ");
-			phone = sc.nextLine();
+			phone = getString();
 			uniqueCheck(phone);
 			if (phone.equals(uniqueCheckPhone(phone))) {
 				System.out.println("중복된 핸드폰 번호가 있습니다.");
 				System.out.println("재시도 하시겠습니까 ? ( Y / N ) : ");
-				String user = InputUtil.toUpperCase(InputUtil.getString());
+				String user = toUpperCase(getString());
 				isFinish = request(user);
 				if (user.equals("N")) {
 					return null;
@@ -112,9 +122,9 @@ public class MemberController {
 		System.out.println("----- 은행 목록 -----");
 		System.out.println("1.국민\n2.농협\n3.신한\n4.신협\n5.카카오");
 		System.out.print("\n은행 : ");
-		String bank = sc.nextLine();
+		int bank = getInt();
 		System.out.print("계좌번호 : ");
-		String account = sc.nextLine();
+		String account = getString();
 
 		memberdto.setName(name);
 		memberdto.setNick(nick);
@@ -122,7 +132,7 @@ public class MemberController {
 		memberdto.setId(id);
 		memberdto.setPwd(pwd);
 		memberdto.setPhone(phone);
-		memberdto.setBank(bank);
+		memberdto.setBankNo(bank);
 		memberdto.setAccount(account);
 
 		return memberdto;
