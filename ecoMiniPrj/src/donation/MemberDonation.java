@@ -7,12 +7,12 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 import main.Main;
-import table.DonationDto;
-import table.EcoDto;
-import table.HistoryDto;
+import dto.DonationDto;
+import member.EcoDto;
+import dto.HistoryDto;
 import util.InputUtil;
 import util.MiniConn;
-import util.ShowPoint;
+import sendMoney.ShowPoint;
 
 public class MemberDonation {
 
