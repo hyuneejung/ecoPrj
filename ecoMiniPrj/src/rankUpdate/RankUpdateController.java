@@ -12,7 +12,6 @@ public class RankUpdateController {
 			return;
 		}
 		EcoDto ed = Main.LoginUser;
-		RkDto rd = new RkController().rankBonus();
 		/*
 		 * 업데이트전 랭크받아오기
 		 * 
@@ -20,15 +19,15 @@ public class RankUpdateController {
 		 * 
 		 * 
 		 * */
-		String userRank = ed.getRankName();
-		String updateRank = rd.getRankName();
-		
 		new RankUpdateService().rankUpdate(ed);
-		
-		if(!userRank.equals(updateRank)) {
-			String cr = new RankUpdateService().changeRank(ed);
+		String cr = new RankUpdateService().changeRank(ed);
+
+		String userRank = ed.getRankName();
+		System.out.println(userRank);
+		System.out.println(cr);
+		if(!userRank.equals(cr)) {
 			ed.setRankName(cr);
-			System.out.println(ed.getNick()+"님 "+ed.getRank()+ "로 등업 축하드립니다!!");
+			System.out.println(ed.getNick()+"님 "+ed.getRankName()+ "로 등업 축하드립니다!!");
 		}
 		
 	}
