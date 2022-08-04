@@ -29,7 +29,6 @@ public class RankUpdateService {
 		Connection conn = null;
 		String rank = null;
 		try {
-	
 			conn = getConnection();
 			rank = new RankUpdateDao().changeRank(ed,conn);
 			
