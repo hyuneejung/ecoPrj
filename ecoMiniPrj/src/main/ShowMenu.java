@@ -1,5 +1,7 @@
 package main;
 
+import util.InputUtil;
+
 public class ShowMenu {
 
 	public int menu() {

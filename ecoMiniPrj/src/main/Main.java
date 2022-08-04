@@ -1,5 +1,15 @@
 package main;
 
+import java.util.Scanner;
+
+import donation.MemberDonation;
+import member.EcoControll;
+import member.EcoDto;
+import member.MemberController;
+import member.MyPage;
+import savePoint.SavePointController;
+import sendMoney.MemberSendMoney;
+
 public class Main {
 
 	public static EcoDto LoginUser = null;
@@ -13,7 +23,7 @@ public class Main {
 
 		System.out.println("\n----- this.eco = money; -----");
 
-		showMenu sm = new showMenu();
+		ShowMenu sm = new ShowMenu();
 		while (true) {
 			int input = sm.menu();
 			switch (input) {
