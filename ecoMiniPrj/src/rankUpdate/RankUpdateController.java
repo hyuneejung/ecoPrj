@@ -23,8 +23,6 @@ public class RankUpdateController {
 		String cr = new RankUpdateService().changeRank(ed);
 
 		String userRank = ed.getRankName();
-		System.out.println(userRank);
-		System.out.println(cr);
 		if(!userRank.equals(cr)) {
 			ed.setRankName(cr);
 			System.out.println(ed.getNick()+"님 "+ed.getRankName()+ "로 등업 축하드립니다!!");

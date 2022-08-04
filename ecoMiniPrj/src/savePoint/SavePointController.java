@@ -28,8 +28,11 @@ public class SavePointController {
 					System.out.println("잘못 입력 하셨습니다.");
 					isFinish = request();
 				}
+			}else if(user.equals("N")){
+				System.out.println("메인페이지로 돌아갑니다 \n\n");
+				return;
 			}else {
-				System.out.println("잘못 입력 하셨습니다.");
+				System.out.println("잘못입력하셨습니다");
 				isFinish = request();
 			}
 		}
@@ -106,6 +109,8 @@ public class SavePointController {
 		if(user.equals("Y")) { //맞으면 FALSE 리턴~
 		}else if(user.equals("N")) {
 			isFinish = true; //아니면 TRUE 리턴 ~
+		}else {
+			System.out.println("잘못입력하셨습니다. 재시도 합니다.");
 		}
 		return isFinish;
 	}
