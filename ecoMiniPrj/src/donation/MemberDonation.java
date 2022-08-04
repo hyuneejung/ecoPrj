@@ -222,6 +222,7 @@ public class MemberDonation {
 
 			if (rs.next()) {
 				System.out.println("기부가 완료되었습니다. 회원페이지로 돌아갑니다.");
+				dto.setPoint(dto.getPoint()-eco);
 				// 메인에서 memberDonation 메소드 전체를 for문 안에 넣어야함
 				System.out.println("현재 나의 ECO : " + rs.getString("POINT"));
 			}

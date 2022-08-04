@@ -130,7 +130,7 @@ public class MemberSendMoney {
 			pstmt.setString(1, dto.getId());
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				System.out.println("[" + rs.getString("BANKNO") + "은행 /" + rs.getString("ACCOUNT") +" / " +rs.getString("NAME") + "]으로 " + eco + "ECO를 이체합니다. (Y / N)");
+				System.out.println("[" +dto.getBankName() + "은행 /" + rs.getString("ACCOUNT") +" / " +rs.getString("NAME") + "]으로 " + eco + "ECO를 이체합니다. (Y / N)");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
