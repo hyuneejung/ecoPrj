@@ -20,14 +20,14 @@ public class RankUpdateController {
 		 * 
 		 * 
 		 * */
-		String userRank = ed.getRank();
+		String userRank = ed.getRankName();
 		String updateRank = rd.getRankName();
 		
 		new RankUpdateService().rankUpdate(ed);
 		
 		if(!userRank.equals(updateRank)) {
 			String cr = new RankUpdateService().changeRank(ed);
-			ed.setRank(cr);
+			ed.setRankName(cr);
 			System.out.println(ed.getNick()+"님 "+ed.getRank()+ "로 등업 축하드립니다!!");
 		}
 		

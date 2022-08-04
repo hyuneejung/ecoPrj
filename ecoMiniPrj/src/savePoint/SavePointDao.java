@@ -7,7 +7,6 @@ import java.sql.SQLException;
 
 import cafe.CafeDto;
 import member.EcoDto;
-import util.InputUtil;
 import util.MiniConn;
 
 public class SavePointDao {
@@ -30,15 +29,15 @@ public class SavePointDao {
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, dto.getName());
-			pstmt.setString(2, ed.getRank());
+			pstmt.setString(2, ed.getRankName());
 			pstmt.setString(3, dto.getName());
-			pstmt.setString(4, ed.getRank());
+			pstmt.setString(4, ed.getRankName());
 			pstmt.setString(5, ed.getId());
 			result = pstmt.executeUpdate();
 			pstmt = conn.prepareStatement(sql2);
 			pstmt.setString(1, ed.getId());
 			pstmt.setString(2, dto.getName());
-			pstmt.setString(3, ed.getRank());
+			pstmt.setString(3, ed.getRankName());
 			pstmt.setString(4, dto.getName());
 			result2 = pstmt.executeUpdate();
 			if(result > 0 && result2 > 0) {
@@ -74,15 +73,15 @@ public class SavePointDao {
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, dto.getName());
-			pstmt.setString(2, ed.getRank());
+			pstmt.setString(2, ed.getRankName());
 			pstmt.setString(3, dto.getName());
-			pstmt.setString(4, ed.getRank());
+			pstmt.setString(4, ed.getRankName());
 			pstmt.setString(5, ed.getId());
 			result = pstmt.executeUpdate();
 			pstmt = conn.prepareStatement(sql2);
 			pstmt.setString(1, ed.getId());
 			pstmt.setString(2, dto.getName());
-			pstmt.setString(3, ed.getRank());
+			pstmt.setString(3, ed.getRankName());
 			pstmt.setString(4, dto.getName());
 			result2 = pstmt.executeUpdate();
 			if(result > 0 && result2 > 0) {
