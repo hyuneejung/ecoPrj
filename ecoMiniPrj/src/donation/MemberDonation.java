@@ -12,7 +12,6 @@ import member.EcoDto;
 import dto.HistoryDto;
 import util.InputUtil;
 import util.MiniConn;
-import sendMoney.ShowPoint;
 
 public class MemberDonation {
 
@@ -21,8 +20,11 @@ public class MemberDonation {
 	// 기부하기
 	public boolean memberDonation() {
 
+		// 로그인 객체 정보 받아오기
+		EcoDto dto = Main.LoginUser;
+
 		// 현재 나의 ECO포인트 보여주기
-		ShowPoint.showPoint(Main.LoginUser);
+		System.out.println("현재 나의 ECO : " + dto.getPoint() + "\n");
 
 		// ECO가 부족하면 기부 불가, 메인으로 돌아감
 		if (Main.LoginUser.getPoint() < 1000) {
@@ -42,7 +44,7 @@ public class MemberDonation {
 				// 기부할 환경단체 선택, 리턴 (int num = 0에 대입됨)
 				num = selectNum();
 				
-				//DONATION NO를 PLACE_NO로 변경하는 작업
+				//DONATION_NO를 PLACE_NO로 변경하는 작업
 				setHdtoPlaceNo(num,hDto);
 				
 				// 기부할 ECO 입력, 리턴 (int eco = 0에 대입됨)
@@ -76,7 +78,7 @@ public class MemberDonation {
 
 	}// memberDonation
 
-	private void setHdtoPlaceNo(int num, HistoryDto hDto) {
+	public void setHdtoPlaceNo(int num, HistoryDto hDto) {
 		switch(num){
 			case 1 : 
 				hDto.setPlaceNo(22);
@@ -124,7 +126,7 @@ public class MemberDonation {
 			MiniConn.close(pstmt, rs, conn);
 		}
 
-	}// DonationList
+	}//showList
 
 	// 기부할 환경단체 번호 선택, 리턴
 	public int selectNum() {
@@ -180,7 +182,7 @@ public class MemberDonation {
 		} finally {
 			MiniConn.close(pstmt, rs, conn);
 		}
-		//String result = InputUtil.sc.next();
+	
 		return InputUtil.toUpperCase(InputUtil.getString());
 
 	}
@@ -200,7 +202,7 @@ public class MemberDonation {
 		try {
 			// update 실시 후 커밋, 실패면 롤백
 			pstmt = conn.prepareStatement(sql1);
-			pstmt.setInt(1, dto.getPoint());
+			//pstmt.setInt(1, dto.getPoint());
 			pstmt.setInt(1, dto.getPoint() - eco);
 			pstmt.setString(2, dto.getId());
 			int result = pstmt.executeUpdate();
@@ -222,8 +224,8 @@ public class MemberDonation {
 
 			if (rs.next()) {
 				System.out.println("기부가 완료되었습니다. 회원페이지로 돌아갑니다.");
-				dto.setPoint(dto.getPoint()-eco);
-				// 메인에서 memberDonation 메소드 전체를 for문 안에 넣어야함
+				//dto.setPoint(dto.getPoint()-eco);
+				dto.setPoint(rs.getInt("POINT"));
 				System.out.println("현재 나의 ECO : " + rs.getString("POINT"));
 			}
 
@@ -240,18 +242,18 @@ public class MemberDonation {
 		Connection conn = MiniConn.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		DonationDto dto = new DonationDto();
+		DonationDto dDto = new DonationDto();
 
 		// 임시로 회원정보 dto에 값을 지정하고 dto값으로 db를 update한다.
-		dto.setAddedPoint(dto.getAddedPoint() + eco); // 누적 기부금액 = 기존+기부한eco
-		dto.setNo(num); // 선택했던 기부단체 번호
+		dDto.setAddedPoint(dDto.getAddedPoint() + eco); // 누적 기부금액 = 기존+기부한eco
+		dDto.setNo(num); // 선택했던 기부단체 번호
 
 		String sql = "UPDATE DONATION SET ADDEDPOINT = ? WHERE NO = ?";
 		try {
 			// update 실시 후 커밋, 실패면 롤백
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, dto.getAddedPoint());
-			pstmt.setInt(2, dto.getNo());
+			pstmt.setInt(1, dDto.getAddedPoint());
+			pstmt.setInt(2, dDto.getNo());
 			int result = pstmt.executeUpdate();
 			if (result == 1)
 				MiniConn.commit(conn);
