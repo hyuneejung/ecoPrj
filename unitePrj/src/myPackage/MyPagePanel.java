@@ -250,8 +250,7 @@ public class MyPagePanel extends JFrame {
 		labelAddedPoint.setText(String.valueOf(Main.LoginUser.getAddedPoint()));
 		labelBank.setText(Main.LoginUser.getBankName());
 		labelAccount.setText(Main.LoginUser.getAccount());
-		labelRank.setText(Main.LoginUser.getRankName());
-		
+		labelRank.revalidate();
 	}
 
 }
