@@ -104,7 +104,7 @@ public class MemberSendMoney {
 		try {
 			// update 실시 후 커밋, 실패면 롤백
 			pstmt = conn.prepareStatement(sql1);
-			pstmt.setInt(1, dto.getPoint());
+			//pstmt.setInt(1, dto.getPoint());
 			pstmt.setInt(1, dto.getPoint() - eco);
 			pstmt.setString(2, dto.getId());
 			result = pstmt.executeUpdate();
