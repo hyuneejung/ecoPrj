@@ -189,7 +189,7 @@ public class MyPagePanel extends JFrame {
 		
 		background.add(labelRank);
 		
-		labelName.setBounds(313, 129, 50, 21);
+		labelName.setBounds(313, 129, 80, 21);
 		labelNick.setBounds(320, 166, 85, 21);
 		labelEnroll_Date.setBounds(335, 204, 100, 21);
 		labelId.setBounds(179, 270, 185, 21); 
@@ -198,7 +198,7 @@ public class MyPagePanel extends JFrame {
 		labelPhone.setBounds(210, 380, 282, 21);
 		labelBank.setBounds(210, 433, 104, 21);
 		labelAccount.setBounds(270, 433, 104, 21);
-		labelRank.setBounds(365, 130, 25, 20);
+		labelRank.setBounds(395, 130, 25, 20);
 		
 		nickModifyButton.setBounds(412, 151, 104, 58);
 		pwdModifyButton.setBounds(188, 463, 230, 77);

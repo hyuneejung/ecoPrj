@@ -9,10 +9,10 @@ import java.util.Scanner;
 import main.Main;
 import dto.DonationDto;
 import member.EcoDto;
+import sendMoney.ShowPoint;
 import dto.HistoryDto;
 import util.InputUtil;
 import util.MiniConn;
-import util.ShowPoint;
 
 public class MemberDonation {
 
