@@ -221,9 +221,14 @@ public class ShowRankingPanel extends JFrame {
 		conn = MiniConn.getConnection();
 		String[][] rank = new String[5][3];
 
-		String sql = "SELECT ROWNUM, ID, 포인트\r\n" + "FROM(SELECT ROWNUM, ID, 포인트\r\n"
-				+ "FROM (SELECT ID, ABS(SUM(POINT)) 포인트\r\n" + "FROM HISTORY\r\n" + "WHERE REPORT_NO = 4\r\n"
-				+ "AND ROWNUM <= 5\r\n" + "GROUP BY ID)\r\n" + "ORDER BY 포인트 DESC)";
+		String sql = "SELECT ROWNUM, ID, 포인트\r\n"
+				+ "FROM (SELECT ROWNUM, ID, 포인트\r\n"
+				+ "FROM (SELECT ID, ABS(SUM(POINT)) 포인트\r\n"
+				+ "FROM HISTORY\r\n"
+				+ "WHERE REPORT_NO = 4\r\n"
+				+ "GROUP BY ID)\r\n"
+				+ "ORDER BY 포인트 DESC)\r\n"
+				+ "WHERE ROWNUM <= 5";
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -252,8 +257,8 @@ public class ShowRankingPanel extends JFrame {
 
 		String sql = "SELECT ROWNUM, ID, 포인트\r\n" + "FROM (SELECT ROWNUM, ID, 포인트\r\n"
 				+ "FROM (SELECT ID, ABS(SUM(POINT)) 포인트\r\n" + "FROM HISTORY\r\n"
-				+ "WHERE TIME_REPORT > TO_DATE('20220731') AND TIME_REPORT < TO_DATE('20220807')\r\n"
-				+ "AND REPORT_NO = 4\r\n" + "GROUP BY ID)\r\n" + "ORDER BY 포인트 DESC)";
+				+ "WHERE TIME_REPORT > TO_DATE('20220807') AND TIME_REPORT < TO_DATE('20220813')\r\n"
+				+ "AND REPORT_NO = 4\r\n" + "GROUP BY ID)\r\n" + "ORDER BY 포인트 DESC) WHERE ROWNUM <= 5";
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
