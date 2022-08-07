@@ -19,7 +19,7 @@ public class rankingnum {
 		ResultSet rs = null;
 
 		// SQL 실행
-    	String sql = "SELECT NICK , ADDEDPOINT FROM ECO_MEMBER ORDER BY ADDEDPOINT";
+    	String sql = "SELECT NICK , ADDEDPOINT FROM ECO_MEMBER ORDER BY ADDEDPOINT DESC";
 		// SQL 객체에담기 
 		try {
 			pstmt = conn.prepareStatement(sql);
